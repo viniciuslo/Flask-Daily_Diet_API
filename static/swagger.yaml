@@ -1,0 +1,130 @@
+swagger: "2.0"
+info:
+  description: "API para controle de dieta diária"
+  version: "1.0.0"
+  title: "Daily Diet API"
+host: "localhost:5000"
+schemes:
+  - "http"
+paths:
+  /meals:
+    post:
+      summary: "Cria uma nova refeição"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Refeição a ser criada"
+          required: true
+          schema:
+            type: "object"
+            properties:
+              name:
+                type: "string"
+              description:
+                type: "string"
+              date_time:
+                type: "string"
+              in_diet:
+                type: "boolean"
+              user_id:
+                type: "integer"
+      responses:
+        201:
+          description: "Refeição criada"
+    get:
+      summary: "Lista todas as refeições"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Lista de refeições"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+              properties:
+                id:
+                  type: "integer"
+                name:
+                  type: "string"
+                description:
+                  type: "string"
+                date_time:
+                  type: "string"
+                in_diet:
+                  type: "boolean"
+                user_id:
+                  type: "integer"
+  /meals/{id}:
+    get:
+      summary: "Obtém uma refeição específica"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Refeição encontrada"
+          schema:
+            type: "object"
+            properties:
+              id:
+                type: "integer"
+              name:
+                type: "string"
+              description:
+                type: "string"
+              date_time:
+                type: "string"
+              in_diet:
+                type: "boolean"
+              user_id:
+                type: "integer"
+    put:
+      summary: "Atualiza uma refeição"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          type: "integer"
+        - in: "body"
+          name: "body"
+          description: "Refeição a ser atualizada"
+          required: true
+          schema:
+            type: "object"
+            properties:
+              name:
+                type: "string"
+              description:
+                type: "string"
+              date_time:
+                type: "string"
+              in_diet:
+                type: "boolean"
+      responses:
+        200:
+          description: "Refeição atualizada"
+    delete:
+      summary: "Deleta uma refeição"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          type: "integer"
+      responses:
+        204:
+          description: "Refeição deletada"
