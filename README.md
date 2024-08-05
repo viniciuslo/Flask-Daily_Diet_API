@@ -6,7 +6,6 @@ A Daily Diet API é uma aplicação construída em Flask para gerenciar a dieta 
 ## Estrutura do Projeto
 
 ```
-arduino
 
 daily_diet_api/
 │
